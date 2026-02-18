@@ -8,10 +8,9 @@ interface Props {
   times: ImsakiyahTime;
   isDarkMode: boolean;
   locationName: string;
-  isLoading?: boolean;
 }
 
-const PrayerTracker: React.FC<Props> = ({ data, onChange, times, isDarkMode, locationName, isLoading }) => {
+const PrayerTracker: React.FC<Props> = ({ data, onChange, times, isDarkMode, locationName }) => {
   const prayers: { id: keyof DailyPrayerTracker; label: string; time: string }[] = [
     { id: 'subuh', label: 'Subuh', time: times.subuh },
     { id: 'dzuhur', label: 'Dzuhur', time: times.dzuhur },
@@ -34,12 +33,6 @@ const PrayerTracker: React.FC<Props> = ({ data, onChange, times, isDarkMode, loc
     <div className={`rounded-2xl shadow-sm border p-6 transition-colors duration-300 relative ${
       isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-100'
     }`}>
-      {isLoading && (
-        <div className="absolute inset-0 bg-white/50 dark:bg-slate-800/50 backdrop-blur-[1px] flex items-center justify-center z-10 rounded-2xl">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
-        </div>
-      )}
-      
       <div className="flex flex-col gap-2 mb-6">
         <div className="flex items-center justify-between">
           <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-slate-800'}`}>Jadwal Sholat & Tracker</h3>
@@ -52,7 +45,7 @@ const PrayerTracker: React.FC<Props> = ({ data, onChange, times, isDarkMode, loc
           </div>
         </div>
         <div className={`text-[10px] font-medium uppercase tracking-widest ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-          {locationName} (Kemenag RI)
+          {locationName}
         </div>
       </div>
       
@@ -71,7 +64,7 @@ const PrayerTracker: React.FC<Props> = ({ data, onChange, times, isDarkMode, loc
               </div>
               <div>
                 <p className={`font-semibold ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>{prayer.label}</p>
-                <p className={`text-xs capitalize ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>{data[prayer.id] || 'Belum diisi'}</p>
+                <p className={`text-xs capitalize ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>{data[prayer.id] === 'none' ? 'Belum diisi' : data[prayer.id] === 'jamaah' ? 'Berjamaah' : data[prayer.id] === 'sendiri' ? 'Munfarid' : 'Terlewat'}</p>
               </div>
             </div>
             
