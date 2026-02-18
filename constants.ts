@@ -118,7 +118,13 @@ export const SURAHS: Surah[] = [
   { number: 114, name: "An-Nas", englishName: "Mankind", numberOfAyahs: 6 }
 ];
 
-export const RAMADAN_START_2026 = new Date('2026-02-18');
+/**
+ * START RAMADAN 2026
+ * The user wants Feb 18th 18:00 to be the entry point.
+ * By setting the anchor to Feb 19th and using the 18:00 shift logic, 
+ * Feb 18th 18:00 will correctly result in Ramadan Day 1.
+ */
+export const RAMADAN_START_2026 = new Date('2026-02-19');
 
 // Mock data for Jakarta 2026
 export const MOCK_IMSAKIYAH_2026: ImsakiyahTime[] = Array.from({ length: 30 }, (_, i) => ({

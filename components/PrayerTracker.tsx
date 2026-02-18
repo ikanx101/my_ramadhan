@@ -11,13 +11,15 @@ interface Props {
 }
 
 const PrayerTracker: React.FC<Props> = ({ data, onChange, times, isDarkMode, locationName }) => {
+  // Updated order: Maghrib, Isya, Subuh, Dzuhur, Ashar (as per user request)
+  // Included Tarawih after Isya as it is essential for a Ramadan Tracker
   const prayers: { id: keyof DailyPrayerTracker; label: string; time: string }[] = [
-    { id: 'subuh', label: 'Subuh', time: times.subuh },
-    { id: 'dzuhur', label: 'Dzuhur', time: times.dzuhur },
-    { id: 'ashar', label: 'Ashar', time: times.ashar },
     { id: 'maghrib', label: 'Maghrib', time: times.maghrib },
     { id: 'isya', label: 'Isya', time: times.isya },
     { id: 'tarawih', label: 'Tarawih', time: '19:45' },
+    { id: 'subuh', label: 'Subuh', time: times.subuh },
+    { id: 'dzuhur', label: 'Dzuhur', time: times.dzuhur },
+    { id: 'ashar', label: 'Ashar', time: times.ashar },
   ];
 
   const getStatusColor = (status: PrayerStatus) => {
