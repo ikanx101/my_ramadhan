@@ -1,0 +1,7 @@
+{
+  "name": "My Ramadhan Tracker 2026",
+  "description": "A comprehensive Ramadan 2026 dashboard featuring prayer schedules, jamaah trackers, Quran tilawah progress, and daily infaq logging with spiritual insights.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
